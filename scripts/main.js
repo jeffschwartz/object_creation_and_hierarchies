@@ -15,6 +15,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         var tommy, tommy2, tommy3,
             $runbtn = $( '#runbenchmarks' ),
             $status = $( '#status' ),
+            $results = $( '#results' ),
             $page = $( '#page' ),
             $generatingbenchmarks = $( '#generatingbenchmarks' ),
             $benchmarksavailable = $( '#benchmarksavailable' ),
@@ -52,7 +53,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         /// create an instance of employee
         tommy = new core.method1.Employee( 'Tommy San', 'Top Cat', 'Meow' );
 
-        $sampleoutput.append( '<h1>Example Of Method #1 - using pseudo classical inheritance...</h1>' );
+        $sampleoutput.append( '<h1>Sample output of Method #1 - using pseudo classical inheritance...</h1>' );
         $sampleoutput.append( '<ul>' );
         $sampleoutput.append( sampleOut( 0, tommy.getName() ) );
         $sampleoutput.append( sampleOut( 1, tommy.getJobTitle() ) );
@@ -77,7 +78,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
             says     : 'Meow'
         } );
 
-        $sampleoutput.append( '<h1>Example Of Method #2 - using prototypal inheritance...</h1>' );
+        $sampleoutput.append( '<h1>Sample output of Method #2 - using prototypal inheritance...</h1>' );
         $sampleoutput.append( '<ul>' );
         $sampleoutput.append( sampleOut( 0, tommy2.getName() ) ); // outputs Jeff Schwartz
         $sampleoutput.append( sampleOut( 1, tommy2.getJobTitle() ) ); // outputs Web Provocateur
@@ -98,7 +99,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         /// create an instance of employee
         tommy3 = core.method3.createEmployee( {name : 'Tommy San', jobTitle : 'Top Cat', says : 'Meow'} );
 
-        $sampleoutput.append( '<h1>Example of Method #3 - using compositional inheritance...</h1>' );
+        $sampleoutput.append( '<h1>Sample output of Method #3 - using compositional inheritance...</h1>' );
         $sampleoutput.append( '<ul>' );
         $sampleoutput.append( sampleOut( 0, tommy3.getName() ) ); // outputs Jeff Schwartz
         $sampleoutput.append( sampleOut( 1, tommy3.getJobTitle() ) ); // outputs Web Provocateur
@@ -118,8 +119,8 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
                 that = this;
 
             $( this ).attr( 'disabled', 'disabled' );
-            $status.html( '' );
             $page.addClass( 'showProgressCursor' );
+            $status.addClass( 'hidden' );
             $( this ).addClass( 'showProgressCursor' );
             $benchmarksavailable.addClass( 'hidden' );
             $generatingbenchmarks.removeClass( 'hidden' );
@@ -131,6 +132,14 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
                 $( that ).removeAttr( 'disabled' );
                 $generatingbenchmarks.addClass( 'hidden' );
                 $benchmarksavailable.removeClass( 'hidden' );
+
+            } );
+            promise.progress( function ( notice ) {
+
+                $status.removeClass( 'hidden' );
+                var s = '<li>' + notice + '</li>';
+                console.log( s );
+                $results.append( s );
 
             } );
 

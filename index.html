@@ -12,12 +12,14 @@
 </div>
 <div id="page">
     <div id="content">
-        <div id="sampleoutput"></div>
-        <!--<p>Run the Benchmarks by clicking the button below.</p>-->
         <button id="runbenchmarks">Run Benchmarks!<br><span style="font-size: .5em;">each method x 1,000,000 times</span></button>
-        <div id='status'></div>
+        <div id='status' class="hidden">
+            <h1>Benchmark Results</h1>
+            <ul id="results"></ul>
+        </div>
         <div id="generatingbenchmarks" class="hidden">Benchmarks are being generated. Pleae wait...</div>
-        <div id="benchmarksavailable" class="hidden">Benchmarks are now available for viewing in the console.</div>
+        <div id="benchmarksavailable" class="hidden">More precise benchmarks are also available for viewing in the console.</div>
+        <div id="sampleoutput"></div>
     </div>
 </div>
 <div id="footer_container" class="fixed-bottom">

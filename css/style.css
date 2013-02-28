@@ -3,15 +3,16 @@ body {
     font-size: 100%;
     margin: 0;
     font-family: sans-serif;
-    background-color: #eee;
+    background-color: #fff;
+    line-height: 2em;
 }
 
 #page {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     padding-top: 120px;
-    width: 100%;
-    margin-bottom: 110px;
+    width: 50%;
+    margin: 0 auto 110px auto;
 }
 
 #header_container {
@@ -41,7 +42,7 @@ body {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     width: 100%;
-    border-top: 1px solid #444;
+    border-top: 1px dashed #444;
     padding: 10px;
     text-align: center;
     font-size: 1rem;
@@ -50,7 +51,7 @@ body {
 }
 
 #footer_container div {
-    font-size: .8rem;
+    font-size: 1em;
     color: #ccc;
 }
 
@@ -86,11 +87,11 @@ p {
     color: #48c;
 }
 
-#sampleoutput h1 {
+#sampleoutput h1, #status h1 {
     font-size: 1.5rem;
 }
 
-#sampleoutput li {
+#sampleoutput li, #status li {
     font-size: 1.2rem;
 }
 
@@ -110,13 +111,17 @@ p {
 }
 
 #generatingbenchmarks {
-    color: red;
+    color: #008000;
 }
 
 #benchmarksavailable {
-    color: orange;
+    color: #ffa800;
 }
 
-#status p {
+#status {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    font-size: 1.2rem;
     color: #480;
 }
