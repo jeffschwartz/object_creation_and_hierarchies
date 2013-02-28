@@ -1,0 +1,122 @@
+body {
+    width: 100%;
+    font-size: 100%;
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #eee;
+}
+
+#page {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding-top: 120px;
+    width: 100%;
+    margin-bottom: 110px;
+}
+
+#header_container {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+    background-color: #48c;
+    color: #fff;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+}
+
+#footer_container {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    border-top: 1px solid #444;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: normal;
+    background-color: #fff;
+}
+
+#footer_container div {
+    font-size: .8rem;
+    color: #ccc;
+}
+
+#footer_container div a, #footer_container div span {
+    color: #48c;
+}
+
+.underlined_text {
+    text-decoration: underline;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+button {
+    margin-top: 35px;
+    font-size: 1.2rem;
+    color: #48c;
+    padding: 10px;
+}
+
+p {
+    color: #48c;
+    font-size: 1.5rem;
+}
+
+#content {
+    padding: 20px;
+}
+
+#sampleoutput h1, #sampleoutput li {
+    color: #48c;
+}
+
+#sampleoutput h1 {
+    font-size: 1.5rem;
+}
+
+#sampleoutput li {
+    font-size: 1.2rem;
+}
+
+.showProgressCursor {
+    cursor: progress;
+}
+
+.hidden {
+    display: none;
+}
+
+#generatingbenchmarks, #benchmarksavailable {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+#generatingbenchmarks {
+    color: red;
+}
+
+#benchmarksavailable {
+    color: orange;
+}
+
+#status p {
+    color: #480;
+}
