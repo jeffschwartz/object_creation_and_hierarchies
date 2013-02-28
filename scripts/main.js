@@ -120,23 +120,24 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
 
             $( this ).attr( 'disabled', 'disabled' );
             $page.addClass( 'showProgressCursor' );
-            $status.addClass( 'hidden' );
+            $status.hide();
+            $results.html( '' );
             $( this ).addClass( 'showProgressCursor' );
-            $benchmarksavailable.addClass( 'hidden' );
-            $generatingbenchmarks.removeClass( 'hidden' );
+            $benchmarksavailable.hide();
+            $generatingbenchmarks.show();
             promise = benchmarks.run();
             promise.done( function () {
 
                 $page.removeClass( 'showProgressCursor' );
                 $( that ).removeClass( 'showProgressCursor' );
                 $( that ).removeAttr( 'disabled' );
-                $generatingbenchmarks.addClass( 'hidden' );
-                $benchmarksavailable.removeClass( 'hidden' );
+                $generatingbenchmarks.hide();
+                $benchmarksavailable.show();
 
             } );
             promise.progress( function ( notice ) {
 
-                $status.removeClass( 'hidden' );
+                $status.show();
                 var s = '<li>' + notice + '</li>';
                 console.log( s );
                 $results.append( s );

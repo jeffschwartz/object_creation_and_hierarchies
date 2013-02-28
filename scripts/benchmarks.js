@@ -42,7 +42,8 @@ define( ['core', 'jquery'], function ( core, $ ) {
             console.timeEnd( 'Benchmark Method #1 - using pseudo classical inheritance' );
             endTime = new Date();
             elapsedTime = new Date( endTime - startTime );
-            deferred.notify( 'Benchmark Method #1 - using pseudo classical inheritance... aproximate elapsed time: ' + formatElapsedTime( elapsedTime ) );
+            deferred.notify( 'Benchmark Method #1 - using pseudo classical inheritance... ' +
+                'aproximate elapsed time: ' + formatElapsedTime( elapsedTime ) );
 
             /*
              * Benchmark Method #2 - prototypal
@@ -61,7 +62,8 @@ define( ['core', 'jquery'], function ( core, $ ) {
             console.timeEnd( 'Benchmark Method #2 - using prototypal inheritance' );
             endTime = new Date();
             elapsedTime = new Date( endTime - startTime );
-            deferred.notify( 'Benchmark Method #2 - using prototypal inheritance... approximate elapsed time: ' + formatElapsedTime( elapsedTime ) );
+            deferred.notify( 'Benchmark Method #2 - using prototypal inheritance... ' +
+                'approximate elapsed time: ' + formatElapsedTime( elapsedTime ) );
 
             /*
              * Benchmark Method #3 - composition
@@ -76,7 +78,8 @@ define( ['core', 'jquery'], function ( core, $ ) {
             console.timeEnd( 'Benchmark Method #3 - using compositional inheritance' );
             endTime = new Date();
             elapsedTime = new Date( endTime - startTime );
-            deferred.notify( 'Benchmark Method #3 - using compositional inheritance completed... approximate elapsed time: ' + formatElapsedTime( elapsedTime ) );
+            deferred.notify( 'Benchmark Method #3 - using compositional inheritance completed... ' +
+                'approximate elapsed time: ' + formatElapsedTime( elapsedTime ) );
 
             deferred.resolve();
 
