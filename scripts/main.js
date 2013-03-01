@@ -50,6 +50,24 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         };
 
         /*
+         * a function that creates convenience functions
+         * for appending to an element $el is a dom element.
+         * $el is a jquery object.
+         */
+        var appendToElement = function ( $el ) {
+            // guard against inappropriate argument
+            if ( !($el instanceof $) ) {
+                throw new Error('appendToElement expects an instance of jQuery');
+            }
+            return function ( s ) {
+                $el.append( s );
+            };
+        };
+
+        // now lets create an append function for the sample output
+        var append = appendToElement( $sampleoutput );
+
+        /*
          * Example Of Method #1 - using pseudo classical inheritance
          */
 
@@ -57,19 +75,19 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         tommy = new core.method1.Employee( 'Tommy San', 'Top Cat', 'Meow' );
 
         /// output some useful information to the page
-        $sampleoutput.append( '<h1>Sample output of Method #1 - using pseudo classical inheritance...</h1>' );
-        $sampleoutput.append( '<ul>' );
-        $sampleoutput.append( sampleOut( 0, tommy.getName() ) );
-        $sampleoutput.append( sampleOut( 1, tommy.getJobTitle() ) );
-        $sampleoutput.append( sampleOut( 2, tommy.getSays() ) );
+        append( '<h1>Sample output of Method #1 - using pseudo classical inheritance...</h1>' );
+        append( '<ul>' );
+        append( sampleOut( 0, tommy.getName() ) );
+        append( sampleOut( 1, tommy.getJobTitle() ) );
+        append( sampleOut( 2, tommy.getSays() ) );
         tommy.setName( 'Mister Tommy' );
         tommy.setJobTitle( 'CIO' );
         tommy.setSays( 'Yada Yada' );
-        $sampleoutput.append( sampleOut( 3, tommy.getName() ) );
-        $sampleoutput.append( sampleOut( 4, tommy.getJobTitle() ) );
-        $sampleoutput.append( sampleOut( 5, tommy.getSays() ) );
-        $sampleoutput.append( '</ul>' );
-        $sampleoutput.append( '<br>' );
+        append( sampleOut( 3, tommy.getName() ) );
+        append( sampleOut( 4, tommy.getJobTitle() ) );
+        append( sampleOut( 5, tommy.getSays() ) );
+        append( '</ul>' );
+        append( '<br>' );
 
         /*
          * Example Of Method #2 - using prototypal inheritance
@@ -83,19 +101,19 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         } );
 
         /// output some useful information to the page
-        $sampleoutput.append( '<h1>Sample output of Method #2 - using prototypal inheritance...</h1>' );
-        $sampleoutput.append( '<ul>' );
-        $sampleoutput.append( sampleOut( 0, tommy2.getName() ) ); // outputs Jeff Schwartz
-        $sampleoutput.append( sampleOut( 1, tommy2.getJobTitle() ) ); // outputs Web Provocateur
-        $sampleoutput.append( sampleOut( 2, tommy2.getSays() ) ); // outputs Web Provocateur
+        append( '<h1>Sample output of Method #2 - using prototypal inheritance...</h1>' );
+        append( '<ul>' );
+        append( sampleOut( 0, tommy2.getName() ) ); // outputs Jeff Schwartz
+        append( sampleOut( 1, tommy2.getJobTitle() ) ); // outputs Web Provocateur
+        append( sampleOut( 2, tommy2.getSays() ) ); // outputs Web Provocateur
         tommy2.setName( 'Mister Tommy' );
         tommy2.setJobTitle( 'CIO' );
         tommy2.setSays( 'Yada Yada' );
-        $sampleoutput.append( sampleOut( 3, tommy2.getName() ) );
-        $sampleoutput.append( sampleOut( 4, tommy2.getJobTitle() ) );
-        $sampleoutput.append( sampleOut( 5, tommy2.getSays() ) ); // outputs Web Provocateur
-        $sampleoutput.append( '</ul>' );
-        $sampleoutput.append( '<br>' );
+        append( sampleOut( 3, tommy2.getName() ) );
+        append( sampleOut( 4, tommy2.getJobTitle() ) );
+        append( sampleOut( 5, tommy2.getSays() ) ); // outputs Web Provocateur
+        append( '</ul>' );
+        append( '<br>' );
 
         /*
          * Example of Method #3 - using compositional inheritance
@@ -105,18 +123,18 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         tommy3 = core.method3.createEmployee( {name : 'Tommy San', jobTitle : 'Top Cat', says : 'Meow'} );
 
         /// output some useful information to the page
-        $sampleoutput.append( '<h1>Sample output of Method #3 - using compositional inheritance...</h1>' );
-        $sampleoutput.append( '<ul>' );
-        $sampleoutput.append( sampleOut( 0, tommy3.getName() ) ); // outputs Jeff Schwartz
-        $sampleoutput.append( sampleOut( 1, tommy3.getJobTitle() ) ); // outputs Web Provocateur
-        $sampleoutput.append( sampleOut( 2, tommy3.getSays() ) ); // outputs Web Provocateur
+        append( '<h1>Sample output of Method #3 - using compositional inheritance...</h1>' );
+        append( '<ul>' );
+        append( sampleOut( 0, tommy3.getName() ) ); // outputs Jeff Schwartz
+        append( sampleOut( 1, tommy3.getJobTitle() ) ); // outputs Web Provocateur
+        append( sampleOut( 2, tommy3.getSays() ) ); // outputs Web Provocateur
         tommy3.setName( 'Mister Tommy' );
         tommy3.setJobTitle( 'CIO' );
         tommy3.setSays( 'Yada Yada' );
-        $sampleoutput.append( sampleOut( 3, tommy3.getName() ) );
-        $sampleoutput.append( sampleOut( 4, tommy3.getJobTitle() ) );
-        $sampleoutput.append( sampleOut( 5, tommy3.getSays() ) ); // outputs Web Provocateur
-        $sampleoutput.append( '</ul>' );
+        append( sampleOut( 3, tommy3.getName() ) );
+        append( sampleOut( 4, tommy3.getJobTitle() ) );
+        append( sampleOut( 5, tommy3.getSays() ) ); // outputs Web Provocateur
+        append( '</ul>' );
 
         /// handle the run benchmark test button click
         $runbtn.click( function () {
@@ -164,4 +182,5 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
 
     } );
 
-} );
+} )
+;
