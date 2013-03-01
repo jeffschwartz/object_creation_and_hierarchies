@@ -138,9 +138,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
             promise.progress( function ( notice ) {
 
                 $status.show();
-                var s = '<li>' + notice + '</li>';
-                console.log( s );
-                $results.append( s );
+                $results.append( '<li>' + notice + '</li>' );
 
             } );
 
