@@ -78,7 +78,7 @@ define( ['core', 'jquery'], function ( core, $ ) {
             console.timeEnd( 'Benchmark Method #3 - using compositional inheritance' );
             endTime = new Date();
             elapsedTime = new Date( endTime - startTime );
-            deferred.notify( 'Benchmark Method #3 - using compositional inheritance completed... ' +
+            deferred.notify( 'Benchmark Method #3 - using compositional inheritance... ' +
                 'approximate elapsed time: ' + formatElapsedTime( elapsedTime ) );
 
             deferred.resolve();
