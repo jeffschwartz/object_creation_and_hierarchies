@@ -129,7 +129,8 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
             // change the mouse cursor to show were in progress
             $page.addClass( 'showProgressCursor' );
             $( this ).addClass( 'showProgressCursor' );
-            // give the gui a chance to respond to the new class on the button and page
+            /// The browsers sometimes wont show the progress cursor if you don't yield to the gui so
+            /// this timeout is to give the gui a chance to respond to the new class on the button and page
             setTimeout( function () {
 
                 // other setup for displaying feedback on the page
@@ -157,7 +158,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
 
                 } );
 
-            }, 500 );
+            }, 1000 );
 
         } );
 
