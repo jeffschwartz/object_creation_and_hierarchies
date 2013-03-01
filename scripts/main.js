@@ -42,6 +42,9 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         // trigger a window resize event to adjust the padding on the body container
         $( window ).resize();
 
+        /*
+         * a convenience function for formatting our sample output
+         */
         var sampleOut = function ( i, txt ) {
             return  '<li>' + subjects[i] + txt + '</li>';
         };
@@ -53,6 +56,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         /// create an instance of employee
         tommy = new core.method1.Employee( 'Tommy San', 'Top Cat', 'Meow' );
 
+        /// output some useful information to the page
         $sampleoutput.append( '<h1>Sample output of Method #1 - using pseudo classical inheritance...</h1>' );
         $sampleoutput.append( '<ul>' );
         $sampleoutput.append( sampleOut( 0, tommy.getName() ) );
@@ -78,6 +82,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
             says     : 'Meow'
         } );
 
+        /// output some useful information to the page
         $sampleoutput.append( '<h1>Sample output of Method #2 - using prototypal inheritance...</h1>' );
         $sampleoutput.append( '<ul>' );
         $sampleoutput.append( sampleOut( 0, tommy2.getName() ) ); // outputs Jeff Schwartz
@@ -99,6 +104,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         /// create an instance of employee
         tommy3 = core.method3.createEmployee( {name : 'Tommy San', jobTitle : 'Top Cat', says : 'Meow'} );
 
+        /// output some useful information to the page
         $sampleoutput.append( '<h1>Sample output of Method #3 - using compositional inheritance...</h1>' );
         $sampleoutput.append( '<ul>' );
         $sampleoutput.append( sampleOut( 0, tommy3.getName() ) ); // outputs Jeff Schwartz
@@ -112,20 +118,25 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         $sampleoutput.append( sampleOut( 5, tommy3.getSays() ) ); // outputs Web Provocateur
         $sampleoutput.append( '</ul>' );
 
-        /// show results available status
+        /// handle the run benchmark test button click
         $runbtn.click( function () {
 
             var promise,
                 that = this;
 
+            // prevent repetitive clicking of this button
             $( this ).attr( 'disabled', 'disabled' );
+            // change the mouse cursor to show were in progress
             $page.addClass( 'showProgressCursor' );
+            $( this ).addClass( 'showProgressCursor' );
+            // other setup for displaying feedback on the page
             $status.hide();
             $results.html( '' );
-            $( this ).addClass( 'showProgressCursor' );
             $benchmarksavailable.hide();
             $generatingbenchmarks.show();
+            // get the promise for the results
             promise = benchmarks.run();
+            // this is what we will do when the promise is resolved
             promise.done( function () {
 
                 $page.removeClass( 'showProgressCursor' );
@@ -135,6 +146,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
                 $benchmarksavailable.show();
 
             } );
+            // this is what we will do when we receive notifications from the promise
             promise.progress( function ( notice ) {
 
                 $status.show();
