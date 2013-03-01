@@ -129,30 +129,35 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
             // change the mouse cursor to show were in progress
             $page.addClass( 'showProgressCursor' );
             $( this ).addClass( 'showProgressCursor' );
-            // other setup for displaying feedback on the page
-            $status.hide();
-            $results.html( '' );
-            $benchmarksavailable.hide();
-            $generatingbenchmarks.show();
-            // get the promise for the results
-            promise = benchmarks.run();
-            // this is what we will do when the promise is resolved
-            promise.done( function () {
+            // give the gui a chance to respond to the new class on the button and page
+            setTimeout( function () {
 
-                $page.removeClass( 'showProgressCursor' );
-                $( that ).removeClass( 'showProgressCursor' );
-                $( that ).removeAttr( 'disabled' );
-                $generatingbenchmarks.hide();
-                $benchmarksavailable.show();
+                // other setup for displaying feedback on the page
+                $status.hide();
+                $results.html( '' );
+                $benchmarksavailable.hide();
+                $generatingbenchmarks.show();
+                // get the promise for the results
+                promise = benchmarks.run();
+                // this is what we will do when the promise is resolved
+                promise.done( function () {
 
-            } );
-            // this is what we will do when we receive notifications from the promise
-            promise.progress( function ( notice ) {
+                    $page.removeClass( 'showProgressCursor' );
+                    $( that ).removeClass( 'showProgressCursor' );
+                    $( that ).removeAttr( 'disabled' );
+                    $generatingbenchmarks.hide();
+                    $benchmarksavailable.show();
 
-                $status.show();
-                $results.append( '<li>' + notice + '</li>' );
+                } );
+                // this is what we will do when we receive notifications from the promise
+                promise.progress( function ( notice ) {
 
-            } );
+                    $status.show();
+                    $results.append( '<li>' + notice + '</li>' );
+
+                } );
+
+            }, 500 );
 
         } );
 
