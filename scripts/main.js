@@ -6,13 +6,14 @@
  * outputs their results to the page
  * Dependencies: core, benchmakrs and jquery
  */
-require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
+require( ['core', 'benchmarks', 'jquery', 'utils'], function ( core, benchmarks, $, utils ) {
 
     "use strict";
 
     $( function () {
 
         var tommy, tommy2, tommy3,
+            $repetitionsTxt = $( '#repetitionsTxt' ),
             $runbtn = $( '#runbenchmarks' ),
             $status = $( '#status' ),
             $results = $( '#results' ),
@@ -57,7 +58,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         var appendToElement = function ( $el ) {
             // guard against inappropriate argument
             if ( !($el instanceof $) ) {
-                throw new Error('appendToElement expects an instance of jQuery');
+                throw new Error( 'appendToElement expects an instance of jQuery' );
             }
             return function ( s ) {
                 $el.append( s );
@@ -140,7 +141,18 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
         $runbtn.click( function () {
 
             var promise,
-                that = this;
+                that = this,
+                reps;
+
+            if ( $repetitionsTxt.val() ) {
+                if ( !utils.isNumber( $repetitionsTxt.val() ) ) {
+                    $repetitionsTxt.val( '' );
+                    $repetitionsTxt.focus();
+                    alert( 'Please enter a valid number for repetitions' );
+                    return;
+                }
+                reps = Number( $repetitionsTxt.val() );
+            }
 
             // prevent repetitive clicking of this button
             $( this ).attr( 'disabled', 'disabled' );
@@ -157,7 +169,7 @@ require( ['core', 'benchmarks', 'jquery'], function ( core, benchmarks, $ ) {
                 $benchmarksavailable.hide();
                 $generatingbenchmarks.show();
                 // get the promise for the results
-                promise = benchmarks.run();
+                promise = reps ? benchmarks.run( reps ) : benchmarks.run();
                 // this is what we will do when the promise is resolved
                 promise.done( function () {
 

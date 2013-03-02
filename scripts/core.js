@@ -93,7 +93,7 @@ define( function () {
     };
 
     // uses person as its prototype
-    module.method2.employee =  fromPrototype( person, {
+    module.method2.employee = fromPrototype( person, {
         getJobTitle : function () {
             return this.jobTitle;
         },

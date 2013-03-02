@@ -4,28 +4,47 @@
  * Implements: 3 benchmarks, one each for pseudo classical, prototypal and composition
  * Dependencies: core and jquery
  */
-define( ['core', 'jquery'], function ( core, $ ) {
+define( ['core', 'jquery', 'utils'], function ( core, $, utils ) {
 
     "use strict";
 
     /// Benchmark The 3 Methods for
-    var i = 1000000, // create 1,000,000 objects
+    var i,
         ii,
         o,
         startTime,
         endTime,
         elapsedTime;
 
+    /*
+     * a convenience function for formatting the elapsed time
+     */
     var formatElapsedTime = function ( elapsedTime ) {
+
         return elapsedTime.getMinutes() + ':' + elapsedTime.getSeconds() + ':' + elapsedTime.getUTCMilliseconds();
+
     };
 
     /*
      * runBenchmarks
      * returns a promise
+     * you can pass a number as an argument to override the default
      */
     var runBenchmarks = function () {
+
         var deferred = $.Deferred();
+
+        // default to 1,000,000 iterations
+        i = 1000000;
+
+        // if an arg was passed then validate it and if valid set i to it
+        if ( arguments.length > 0 ) {
+            if ( !utils.isNumber( arguments[0] ) ) {
+                throw new Error( 'benchmarks.runBenchmarks() called with non number as an argument is not allowed' );
+            }
+            // use the number entered by the user instead of the default
+            i = Number( arguments[0] );
+        }
 
         setTimeout( function () {
 
@@ -86,7 +105,9 @@ define( ['core', 'jquery'], function ( core, $ ) {
         }, 100 );
 
         return deferred;
+
     };
 
     return {run : runBenchmarks};
+
 } );
