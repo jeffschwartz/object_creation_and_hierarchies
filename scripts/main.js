@@ -48,15 +48,14 @@ require( ['core', 'benchmarks', 'jquery', 'utils'], function ( core, benchmarks,
         /// handle change events on the textbox
         $repetitionsTxt.change( function () {
 
-            var val = $( this ).val(),
-                fmt;
+            var val = $( this ).val();
 
             if ( !val ) {
-                return;
+                val = '1000000';
             }
             if ( utils.isNumber( val ) ) {
-                fmt = Number( val ).toLocaleString();
-                $runbenchmarksmemo.html( 'each method x ' + fmt + ' times' );
+                /// *** locael support across browsers is inconsistent
+                $runbenchmarksmemo.html( 'each method x ' + Number( val ).toLocaleString() + ' times' );
             } else {
                 fixInput();
             }
@@ -126,6 +125,8 @@ require( ['core', 'benchmarks', 'jquery', 'utils'], function ( core, benchmarks,
 
         // trigger a window resize event to adjust the padding on the body container
         $( window ).resize();
+        // trigger a change event on the textbox so that the number of repetition is localized
+        $repetitionsTxt.change();
 
         /*
          * internal implementations
