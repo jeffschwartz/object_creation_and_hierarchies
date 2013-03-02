@@ -12,12 +12,13 @@
 </div>
 <div id="page">
     <div id="content">
-        <label for="repetitionsTxt"><input id="repetitionsTxt" type="text" maxlength="10" placeholder="1000000"></label>
-        <button id="runbenchmarks">Run Benchmarks!<br><span
-                style="font-size: .5em;">each method x 1,000,000 times</span></button>
+        <label for="repetitionsTxt"><input id="repetitionsTxt" type="text" maxlength="10" placeholder="1000000"
+                                           autofocus></label>
+        <button id="runbenchmarks">Run Benchmarks!<br><span id="runbenchmarksmemo">each method x 1,000,000 times</span>
+        </button>
 
         <div id='status' class="hidden">
-            <h1>Benchmark Results For Generating 1,000,000 Objects</h1>
+            <h1 id="benchmarkresultfor">Benchmark Results For Generating 1,000,000 Objects</h1>
             <ul id="results"></ul>
         </div>
         <div id="generatingbenchmarks" class="hidden">Benchmarks are being generated. Please wait...</div>
