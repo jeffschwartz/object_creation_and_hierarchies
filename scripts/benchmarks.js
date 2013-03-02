@@ -62,7 +62,7 @@ define( ['core', 'jquery', 'utils'], function ( core, $, utils ) {
             endTime = new Date();
             elapsedTime = new Date( endTime - startTime );
             deferred.notify( 'Benchmark Method #1 - using pseudo classical inheritance... ' +
-                'aproximate elapsed time: ' + formatElapsedTime( elapsedTime ) );
+                'approximate elapsed time: ' + formatElapsedTime( elapsedTime ) );
 
             /*
              * Benchmark Method #2 - prototypal
